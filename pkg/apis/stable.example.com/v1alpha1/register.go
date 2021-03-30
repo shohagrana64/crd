@@ -1,13 +1,13 @@
 package v1alpha1
 
 import (
-	//stable "github.com/shohagrana64/crd/pkg/apis/stable.example.com"
+	stable "github.com/shohagrana64/crd/pkg/apis/stable.example.com"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/runtime"
 	"k8s.io/apimachinery/pkg/runtime/schema"
 )
 
-var SchemaGroupVersion = schema.GroupVersion{Group: stable.GroupName, Version: "v1"}
+var SchemaGroupVersion = schema.GroupVersion{Group: stable.GroupName, Version: "v1alpha1"}
 
 var (
 	SchemaBuilder      runtime.SchemeBuilder
