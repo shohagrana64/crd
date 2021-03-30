@@ -55,7 +55,7 @@ func (in *Disappointment) DeepCopy() *Disappointment {
 	if in == nil {
 		return nil
 	}
-	var out *Disappointment = new(Disappointment)
+	out := new(Disappointment)
 	in.DeepCopyInto(out)
 	return out
 }

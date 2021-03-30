@@ -7,12 +7,12 @@ import (
 	"k8s.io/apimachinery/pkg/runtime/schema"
 )
 
-var SchemaGroupVersion = schema.GroupVersion{Group: stable.GroupName, Version: stable.Version}
+var SchemeGroupVersion = schema.GroupVersion{Group: stable.GroupName, Version: stable.Version}
 
 var (
 	SchemaBuilder      runtime.SchemeBuilder
 	localSchemaBuilder = &SchemaBuilder
-	AddToSchema        = localSchemaBuilder.AddToScheme
+	AddToScheme        = localSchemaBuilder.AddToScheme
 )
 
 func init() {
@@ -20,18 +20,18 @@ func init() {
 }
 
 func Resource(resource string) schema.GroupResource {
-	return SchemaGroupVersion.WithResource(resource).GroupResource()
+	return SchemeGroupVersion.WithResource(resource).GroupResource()
 }
 
 func addKnownTypes(schema *runtime.Scheme) error {
-	schema.AddKnownTypes(SchemaGroupVersion,
+	schema.AddKnownTypes(SchemeGroupVersion,
 		&Disappointment{},
 		&DisappointmentList{},
 	)
-	schema.AddKnownTypes(SchemaGroupVersion,
+	schema.AddKnownTypes(SchemeGroupVersion,
 		&metav1.Status{},
 	)
 
-	metav1.AddToGroupVersion(schema, SchemaGroupVersion)
+	metav1.AddToGroupVersion(schema, SchemeGroupVersion)
 	return nil
 }
