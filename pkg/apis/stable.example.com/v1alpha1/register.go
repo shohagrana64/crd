@@ -10,28 +10,28 @@ import (
 var SchemeGroupVersion = schema.GroupVersion{Group: stable.GroupName, Version: stable.Version}
 
 var (
-	SchemaBuilder      runtime.SchemeBuilder
-	localSchemaBuilder = &SchemaBuilder
-	AddToScheme        = localSchemaBuilder.AddToScheme
+	SchemeBuilder      runtime.SchemeBuilder
+	localSchemeBuilder = &SchemeBuilder
+	AddToScheme        = localSchemeBuilder.AddToScheme
 )
 
 func init() {
-	localSchemaBuilder.Register(addKnownTypes)
+	localSchemeBuilder.Register(addKnownTypes)
 }
 
 func Resource(resource string) schema.GroupResource {
 	return SchemeGroupVersion.WithResource(resource).GroupResource()
 }
 
-func addKnownTypes(schema *runtime.Scheme) error {
-	schema.AddKnownTypes(SchemeGroupVersion,
+func addKnownTypes(scheme *runtime.Scheme) error {
+	scheme.AddKnownTypes(SchemeGroupVersion,
 		&Disappointment{},
 		&DisappointmentList{},
 	)
-	schema.AddKnownTypes(SchemeGroupVersion,
+	scheme.AddKnownTypes(SchemeGroupVersion,
 		&metav1.Status{},
 	)
 
-	metav1.AddToGroupVersion(schema, SchemeGroupVersion)
+	metav1.AddToGroupVersion(scheme, SchemeGroupVersion)
 	return nil
 }

@@ -7,7 +7,7 @@ import (
 )
 
 // +kubebuilder:object:root=true
-// +kubebuilder:resource:path=kubeapis,singular=kubeapi,shortName=kapi,categories={}
+// +kubebuilder:resource:path=disappointments,singular=disappointment,shortName=damt,categories={}
 // +kubebuilder:printcolumn:JSONPath=".metadata.creationTimestamp",name=Age,type=date
 // +kubebuilder:printcolumn:JSONPath=".status.deploymentName",name=Deployment,type=string
 // +kubebuilder:printcolumn:JSONPath=".status.serviceName",name=Service,type=string
