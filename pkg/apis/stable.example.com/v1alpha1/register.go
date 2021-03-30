@@ -7,7 +7,7 @@ import (
 	"k8s.io/apimachinery/pkg/runtime/schema"
 )
 
-var SchemaGroupVersion = schema.GroupVersion{Group: stable.GroupName, Version: "v1"}
+var SchemaGroupVersion = schema.GroupVersion{Group: stable.GroupName, Version: stable.Version}
 
 var (
 	SchemaBuilder      runtime.SchemeBuilder
