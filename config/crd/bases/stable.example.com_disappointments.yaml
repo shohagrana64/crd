@@ -1,0 +1,109 @@
+
+---
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: (devel)
+  creationTimestamp: null
+  name: disappointments.stable.example.com
+spec:
+  group: stable.example.com
+  names:
+    kind: Disappointment
+    listKind: DisappointmentList
+    plural: disappointments
+    shortNames:
+    - damt
+    singular: disappointment
+  scope: Namespaced
+  versions:
+  - additionalPrinterColumns:
+    - jsonPath: .metadata.creationTimestamp
+      name: Age
+      type: date
+    - jsonPath: .status.deploymentName
+      name: Deployment
+      type: string
+    - jsonPath: .status.serviceName
+      name: Service
+      type: string
+    - jsonPath: .status.replicas
+      name: Replicas
+      type: integer
+    - jsonPath: .status.phase
+      name: Status
+      type: string
+    name: v1alpha1
+    schema:
+      openAPIV3Schema:
+        properties:
+          apiVersion:
+            description: 'APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+            type: string
+          kind:
+            description: 'Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+            type: string
+          metadata:
+            type: object
+          spec:
+            properties:
+              container:
+                properties:
+                  containerPort:
+                    description: Container port of Api Server
+                    format: int32
+                    type: integer
+                  image:
+                    description: Container image of the Api Server
+                    type: string
+                required:
+                - containerPort
+                - image
+                type: object
+              deploymentName:
+                type: string
+              replicas:
+                default: 1
+                format: int32
+                maximum: 20
+                minimum: 1
+                type: integer
+              serviceName:
+                type: string
+              serviceType:
+                default: ClusterIP
+                enum:
+                - ClusterIP
+                - NodePort
+                type: string
+              version:
+                type: string
+            required:
+            - container
+            - serviceType
+            type: object
+          status:
+            properties:
+              phase:
+                type: string
+              replicas:
+                format: int32
+                type: integer
+            required:
+            - phase
+            - replicas
+            type: object
+        required:
+        - spec
+        type: object
+    served: true
+    storage: true
+    subresources:
+      status: {}
+status:
+  acceptedNames:
+    kind: ""
+    plural: ""
+  conditions: []
+  storedVersions: []
