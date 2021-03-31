@@ -1,0 +1,25 @@
+apiVersion: stable.example.com/v1alpha1
+kind: Disappointment
+metadata:
+  name: apiserver-disappointment
+  labels:
+    app: apiserver
+spec:
+  replicas: 2
+#  selector:
+#    matchLabels:
+#      app: apiserver
+  serviceType: ClusterIP
+#  servicePorts:
+#    port: 8080
+#    targetPort: 8080
+    #nodePort: 31005
+#  template:
+#    metadata:
+#      labels:
+#        app: apiserver
+
+  container:
+#    name: apiserver
+    image: shohagrana64/bookapiv2:latest
+    containerPort: 8080
