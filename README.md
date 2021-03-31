@@ -1,8 +1,8 @@
 # CRD: Custom Resource Definition
-# hello there 
-Steps:
+### Hello there. In order to create Custom Resource and make it known to the kubernetes API, Follow the following Steps:
 
-1) follow [This](https://www.openshift.com/blog/kubernetes-deep-dive-code-generation-customresources)
+
+1) Read [This](https://www.openshift.com/blog/kubernetes-deep-dive-code-generation-customresources)
 
 2) create the folders as the structure given in the link. Here only the directories that need to be created are:
    - hack
